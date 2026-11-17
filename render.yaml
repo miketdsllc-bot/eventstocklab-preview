@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: chase-lane-generator-mobile
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: python launcher.py
+    healthCheckPath: /health
+    envVars:
+      - key: LANE_APP_PASSWORD
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: chase-lane-mobile-ids
+          property: connectionString
+databases:
+  - name: chase-lane-mobile-ids
+    databaseName: chase_lane_mobile_ids
+    user: chase_lane_mobile_ids_user
+    plan: free
+    region: frankfurt
