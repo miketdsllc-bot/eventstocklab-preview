@@ -5,4 +5,6 @@ new = "            with db() as conn:\n                rows=conn.execute(\n     
 if old not in src:
     raise RuntimeError('Expected cloud registry adapter not found; refusing unsafe patch')
 src=src.replace(old,new,1)
+from hotfix_export import patch_bootstrap
+src=patch_bootstrap(src)
 exec(compile(src,'bootstrap.py','exec'))
