@@ -7,4 +7,6 @@ if old not in src:
 src=src.replace(old,new,1)
 from hotfix_export import patch_bootstrap
 src=patch_bootstrap(src)
+from sms_option3 import install as install_sms_option3
+install_sms_option3()
 exec(compile(src,'bootstrap.py','exec'))
